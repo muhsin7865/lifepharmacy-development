@@ -53,14 +53,6 @@ const AddNewAddressForm = ({
   const [selectedCountry, setCountrySelected] = useState<any>(
     currentCountryDetails.country
   );
-  //   const {
-  //     handleSubmit,
-  //     register,
-  //     getValues,
-  //     formState: { isValid, errors },
-  //   } = useForm({
-  //     mode: "onChange",
-  //   });
 
   const addressFormOnSubmit = (data: any): void => {
     debugger;
