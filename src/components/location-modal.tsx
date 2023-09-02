@@ -5,7 +5,7 @@ import { Typography } from "./ui/typography";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { useModal } from "./ui/modalcontext";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 import { Radio } from "./ui/skeleton";
 
 const LocationModal = () => {
@@ -39,12 +39,12 @@ const LocationModal = () => {
             {" "}
             Where do you want the delivery?
           </Typography>
-          <Player
+          {/* <Player
             src="/animations/location-animation.json"
             loop
             autoplay
             className="player"
-          />
+          /> */}
           <Typography size={"sm"} alignment={"horizontalCenter"}>
             By knowing your area, we will be able to provide instant delivery
             from the nearest Life store around you!{" "}
