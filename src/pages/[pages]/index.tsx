@@ -1,10 +1,10 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import getHomePageData from "@/lib/getHomePageData";
 import getSinglePageData from "@/lib/getSinglePageData";
 import PageStructure from "@/components/page-structure";
 
 
-const PageData = ({ pageData, locale}: { pageData: any; locale: any}) => {
+const PageData = ({ pageData, locale }: { pageData: any; locale: any }) => {
   return pageData.map((data: any, ind: number) => (
     <PageStructure data={data} lang={locale} />
   ));
@@ -12,21 +12,21 @@ const PageData = ({ pageData, locale}: { pageData: any; locale: any}) => {
 
 export default PageData;
 
-export const getStaticPaths = async (context:any) => {
-  const data_res = await getHomePageData(context.params.locale);
+export const getStaticPaths = async (context: any) => {
+  const data_res = await getHomePageData(context.params?.locale);
 
   const slugs = data_res.data.content
     .flatMap((section: any) =>
       section.type != "product_grid" &&
-      section.type != "gap" &&
-      (section.settings.hide_in_desktop_web === false ||
-        section.settings.hide_in_desktop_web === null ||
-        section.settings.hide_in_mobile_web === false ||
-        section.settings.hide_in_mobile_web === null) &&
-      section.section_data_array
+        section.type != "gap" &&
+        (section.settings.hide_in_desktop_web === false ||
+          section.settings.hide_in_desktop_web === null ||
+          section.settings.hide_in_mobile_web === false ||
+          section.settings.hide_in_mobile_web === null) &&
+        section.section_data_array
         ? section.section_data_array.map((secDataArray: any) =>
-            secDataArray.type_key === "page" ? secDataArray.slug : null
-          )
+          secDataArray.type_key === "page" ? secDataArray.slug : null
+        )
         : null
     )
     .filter((slug: any) => slug != null);
@@ -44,9 +44,10 @@ export const getStaticPaths = async (context:any) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const pagesParams = context.params?.pages;
-  const pageData = await getSinglePageData(pagesParams);
+  // const pagesParams = context.params?.pages;
   const locale = context.locale;
+
+  const pageData = await getSinglePageData(locale);
 
   if (!pageData.success) {
     return {

@@ -1,12 +1,5 @@
 import React from "react";
 import ModalContainer from "./ui/modal-container";
-import {
-  Tabs,
-  Tab,
-  TabsHeader,
-  TabsBody,
-  TabPanel,
-} from "@material-tailwind/react";
 import { useState } from "react";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { useTimer } from "use-timer";
@@ -23,6 +16,7 @@ import {
 } from "./ui/command";
 import { Input } from "./ui/input";
 import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import OtpInput from "react-otp-input";
 import { useModal } from "./ui/modalcontext";
@@ -266,17 +260,17 @@ const AuthModal = () => {
         {LoginSignUpPageVisibility ? (
           <form className="sm:space-y-2 space-y-0 pb-2" action="#">
             <div className="mt-3 flex-1">
-              <Tabs value="phone" className="border-none">
-                <TabsHeader className="bg-slate-100">
-                  <Tab key="phone" value="phone" className="z-20">
+              <Tabs defaultValue="phone" className="border-none">
+                <TabsList  >
+                  <TabsTrigger  value="phone" className="z-20">
                     <Typography bold={"semibold"}>Using Phone</Typography>
-                  </Tab>
-                  <Tab key="email" value="email">
+                  </TabsTrigger>
+                  <TabsTrigger value="email">
                     <Typography bold={"semibold"}>Using Email</Typography>
-                  </Tab>
-                </TabsHeader>
-                <TabsBody>
-                  <TabPanel key="phoneinput" value="phone">
+                  </TabsTrigger>
+                </TabsList>
+            
+                  <TabsContent key="phoneinput" value="phone">
                     <div>
                       <Typography
                         bold={"semibold"}
@@ -364,8 +358,8 @@ const AuthModal = () => {
                         }
                       />
                     </div>
-                  </TabPanel>
-                  <TabPanel key="emailInput" value="email">
+                  </TabsContent>
+                  <TabsContent key="emailInput" value="email">
                     <div>
                       <Typography
                         bold={"semibold"}
@@ -418,8 +412,8 @@ const AuthModal = () => {
                         }}
                       />
                     </div>
-                  </TabPanel>
-                </TabsBody>
+                  </TabsContent>
+           
               </Tabs>
             </div>
             <div className="space-y-2">
