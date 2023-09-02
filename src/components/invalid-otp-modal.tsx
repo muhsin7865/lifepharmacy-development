@@ -1,6 +1,6 @@
 import ModalContainer from "./ui/modal-container";
 import { Typography } from "./ui/typography";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 import { useModal } from "./ui/modalcontext";
 import { ReactNode } from "react";
 const InvalidOTPModal = ({
@@ -22,12 +22,12 @@ const InvalidOTPModal = ({
   return (
     <ModalContainer showModal={showModal} setCloseModal={setCloseModal}>
       <div className="rounded-t-xl text-center text-white">
-        <Player
+        {/* <Player
           src={InvalidAnimationUrl ? InvalidAnimationUrl : defaultAnimationUrl}
           autoplay
           keepLastFrame={true}
           className="w-28 h-28"
-        />
+        /> */}
       </div>
       <Typography size={"xl"} bold={"bold"} alignment={"horizontalCenter"}>
         {modalHeader}

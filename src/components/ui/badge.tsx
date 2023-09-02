@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Icon, IconProps, iconVariants } from "./icons";
 import { Typography } from "./typography";
 import { useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 
 const CartBadge = ({ message }: { message: string | number }) => {
   return (
@@ -68,11 +68,11 @@ const ProductWishList = ({iconSize}:{iconSize?:IconProps["sizes"]}) => {
       </span>
       {wishlistState ? (
         <div className="absolute left-0 flex justify-center items-center right-0 top-0 bottom-0 z-10">
-          <Player
+          {/* <Player
             src="/animations/wishlist-animation.json"
             className="w-28 h-full my-auto "
             autoplay
-          ></Player>
+          ></Player> */}
         </div>
       ) : null}
     </>

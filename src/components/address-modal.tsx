@@ -7,7 +7,7 @@ import { Typography } from "./ui/typography";
 import { Button } from "./ui/button";
 import { Icon } from "./ui/icons";
 import { useForm } from "react-hook-form";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 import { Radio } from "./ui/skeleton";
 import { AddNewAddressForm } from "./addnewAddressForm";
 
@@ -54,7 +54,7 @@ const AddressModal = () => {
       {addNewAddressClick && addressData === 0 ? (
         <div className=" bg-white rounded-lg   overflow-y-auto no-scrollbar min-h-fit  max-h-[calc(80vh-1rem)] ">
           <div className="space-y-6">
-            <Player
+            {/* <Player
               speed={0.7}
               src={
                 "https://lottie.host/65751e04-d11e-477e-8312-59ffd9f6aeb5/QaZAktKuHA.json"
@@ -63,7 +63,7 @@ const AddressModal = () => {
               loop
               keepLastFrame={true}
               className="w-80 h-80"
-            />
+            /> */}
             <div className="py-5">
               <Typography bold={"bold"} size={"xl"}>
                 You have no saved Addresses
