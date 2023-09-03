@@ -257,12 +257,12 @@ export const ModalProvider = ({ children }: { children: any }) => {
 
   useEffect(() => {
     debugger
-    session &&
+    session?.token &&
       getSessionDataAddress(session?.token.token).then((res) => {
         setAddressData(res.data.addresses);
         setAddressDataIndex(res.data.addresses[0]);
       });
-  }, [session]);
+  }, [session?.token, !addnewAddressFormVisibility]);
 
   const formDatahandleChange = (e: any): void => {
     const { name, value } = e.target;
@@ -287,7 +287,7 @@ export const ModalProvider = ({ children }: { children: any }) => {
       setLocationModalState(true);
     }
   };
-  console.log(addressData);
+  // console.log(addressData);
 
   const contextValue: ModalContextState = {
     locationModalState,

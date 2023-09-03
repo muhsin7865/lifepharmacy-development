@@ -1,7 +1,7 @@
 import ModalContainer from "./ui/modal-container";
 import { Typography } from "./ui/typography";
 // import { Player } from "@lottiefiles/react-lottie-player";
-import { useModal } from "./ui/modalcontext";
+// import { useModal } from "./ui/modalcontext";
 import { ReactNode } from "react";
 const InvalidOTPModal = ({
   showModal,

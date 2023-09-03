@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // const pagesParams = context.params?.pages;
   const locale = context.locale;
 
-  const pageData = await getSinglePageData(locale);
+  const pageData = await getSinglePageData("ae-en");
 
   if (!pageData.success) {
     return {

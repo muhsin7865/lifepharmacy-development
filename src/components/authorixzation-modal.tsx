@@ -261,7 +261,7 @@ const AuthModal = () => {
           <form className="sm:space-y-2 space-y-0 pb-2" action="#">
             <div className="mt-3 flex-1">
               <Tabs defaultValue="phone" className="border-none">
-                <TabsList  >
+                <TabsList className="grid w-full grid-cols-2" >
                   <TabsTrigger  value="phone" className="z-20">
                     <Typography bold={"semibold"}>Using Phone</Typography>
                   </TabsTrigger>

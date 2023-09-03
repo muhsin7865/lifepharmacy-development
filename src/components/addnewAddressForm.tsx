@@ -54,6 +54,9 @@ const AddNewAddressForm = ({
     currentCountryDetails.country
   );
 
+  console.log(selectedCountry);
+  
+
   const addressFormOnSubmit = (data: any): void => {
     debugger;
     saveAddresstoDb({
@@ -93,6 +96,7 @@ const AddNewAddressForm = ({
       .then((result) => console.log(result))
       .catch((error) => console.log("error while fetching search data", error));
   }
+  
   return (
     <div className="relative   rounded-lg  overflow-y-auto no-scrollbar bg-white">
       <div className="flex">
@@ -298,7 +302,7 @@ const AddNewAddressForm = ({
 
           <div className="flex ">
             <Input
-              {...register("country", { value: currentCountryDetails })}
+              {...register("country", { value: selectedCountry })}
               sizes={"sm"}
               buttonLeft={
                 <DropdownMenu>
@@ -322,7 +326,6 @@ const AddNewAddressForm = ({
                 </DropdownMenu>
               }
               className="rounded-l-none"
-              value={selectedCountry}
             />
           </div>
           <textarea

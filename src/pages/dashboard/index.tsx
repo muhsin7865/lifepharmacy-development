@@ -22,7 +22,7 @@ import { AddNewAddressForm } from "@/components/addnewAddressForm";
 import { useForm } from "react-hook-form";
 import deleteAddress from "@/lib/deleteAddress";
 
-export default function DashboardPage({}) {
+export default function DashboardPage({ }) {
   const [dashBoardVisibility, setDashBoardVisibility] = useState(true);
   const [ordersVisibility, setOrdersVisibility] = useState(false);
   const [returnOrdersVisibility, setreturnOrdersVisibility] = useState(false);
@@ -39,10 +39,10 @@ export default function DashboardPage({}) {
   const [prescriptionData, setPrescriptionData] = useState<any>(null);
   const [precriptionDetailsVisibility, setPrecriptionDetailsVisibility] =
     useState(false);
-  const [addnewAddressFormVisibility, setaddnewAddressFormVisibility] =
-    useState(false);
+  // const [addnewAddressFormVisibility, setaddnewAddressFormVisibility] =
+  //   useState(false);
   const { data: session } = useSession();
-  const { setSheetOpen, setModalFixedState, addressData } = useModal();
+  const { setSheetOpen, setModalFixedState, addressData, addnewAddressFormVisibility, setaddnewAddressFormVisibility } = useModal();
   const {
     handleSubmit,
     register,
@@ -63,7 +63,7 @@ export default function DashboardPage({}) {
       setOrderDetails(res.data)
     );
   };
-console.log(addressData);
+  console.log(addnewAddressFormVisibility);
 
   const setMenuItemVisiblity = (menuName: string, setVisibility: boolean) => {
     if (setVisibility) {
@@ -251,7 +251,7 @@ console.log(addressData);
       <div className="container-page !px-0   flex  space-x-0 h-full w-full rtl:space-x-reverse ">
         <nav
           id="separator-sidebar"
-          className="   border-r fixed w-64 h-screen md:block hidden"
+          className="    fixed w-64 h-screen md:block hidden"
         >
           <SideBarMenuTranstion
             isOpen={sideBarShrink}
@@ -264,11 +264,10 @@ console.log(addressData);
                     onClick={() => menuItem.onClick()}
                     variant={"ghost"}
                     rounded={"md"}
-                    className={`w-full border-none justify-start  ${
-                      selectedMenu === menuItem.id
-                        ? "text-black bg-slate-100"
-                        : "text-black"
-                    }`}
+                    className={`w-full border-none justify-start  ${selectedMenu === menuItem.id
+                      ? "text-black bg-slate-100"
+                      : "text-black"
+                      }`}
                     iconLeft={
                       <Icon
                         type={menuItem.iconType}
@@ -279,7 +278,7 @@ console.log(addressData);
                     <Typography
                       lineClamp={"one"}
                       variant={"lifeText"}
-                      bold={"light"}
+                      bold={"semibold"}
                     >
                       {menuItem.name}
                     </Typography>
@@ -459,8 +458,7 @@ console.log(addressData);
                       sizes={"sm"}
                       className="ml-2 "
                     />
-                  }
-                >
+                  }>
                   GO SHOP
                 </Button>
               </div>
@@ -647,117 +645,19 @@ console.log(addressData);
                     default.
                   </Typography>
                   <div className="flex space-x-2 items-center rtl:space-x-reverse">
-                  {!addnewAddressFormVisibility ? 
-                     <button>
-                     <Icon type="locationPinIcon" sizes={"sm"} /></button> :
-                       <button onClick={()=>setaddnewAddressFormVisibility(false)}>
-                       <Icon type="chevronLeftIcon" sizes={"sm"} /></button>  }
-               
+                    {!addnewAddressFormVisibility ?
+                      <button>
+                        <Icon type="locationPinIcon" sizes={"sm"} /></button> :
+                      <button onClick={() => setaddnewAddressFormVisibility(false)}>
+                        <Icon type="chevronLeftIcon" sizes={"sm"} /></button>}
                     <Typography variant={"lifeText"} bold={"bold"}>
                       Addresses
                     </Typography>
                   </div>
                 </div>
 
-                {addressData > 0 ? (
-                  !addnewAddressFormVisibility ? (
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 my-3">
-                      {addressData.map((addr: any) => (
-                        <div className="border-muted border shadow-sm rounded-lg px-4 py-3 space-y-4 h-full flex flex-col justify-between ">
-                          <div className="space-y-2">
-                            <Typography
-                              size={"sm"}
-                              bold={"bold"}
-                              variant={"lifeText"}
-                            >
-                              {addr.type}
-                            </Typography>
-                            <div className="w-full bg-[#dee2e6] mx-auto h-[1px]"></div>
-                            <div>
-                              <Typography
-                                size={"xs"}
-                                bold={"semibold"}
-                                className="mb-2"
-                              >
-                                {addr.name}
-                              </Typography>
-                              <Typography size={"xs"}>
-                                {addr.google_address}
-                              </Typography>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <Button
-                              variant={"white"}
-                              size={"sm"}
-                              className={typographyVariants({
-                                variant: "primary",
-                                size: "sm",
-                              })}
-                              iconRight={
-                                <Icon
-                                  type="editIcon"
-                                  sizes={"xs"}
-                                  className="ml-1"
-                                />
-                              }
-                              onClick={() => {
-                                setValue("name", addr.name);
-                                setValue("phone", addr.phone);
-                                setValue("type", addr.type);
-                                setValue("state", addr.state);
-                                setValue("city", addr.city);
-                                setValue("street_address", addr.street_address);
-                                setValue("flat_number", addr.flat_number);
-                                setValue("building", addr.building);
-                                setValue("country", addr.country);
-                                setValue(
-                                  "additional_info",
-                                  addr.additional_info
-                                );
-                                setaddnewAddressFormVisibility(true);
-                              }}
-                            >
-                              Edit
-                            </Button>
-
-                            <Button
-                              variant={"white"}
-                              size={"xs"}
-                              className={typographyVariants({
-                                variant: "danger",
-                                size: "sm",
-                              })}
-                              onClick={()=>deleteAddress({
-                                address_id:addr.id
-                              })}
-                              iconRight={
-                                <Icon
-                                  type="crossIcon"
-                                  sizes={"sm"}
-                                  className="ml-1"
-                                />
-                              }
-                            >
-                              Delete
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                      <Button
-                        variant={"outline"}
-                        iconLeft={
-                          <Icon
-                            type="editIcon"
-                            sizes={"sm"}
-                            className="mr-2 "
-                          />
-                        }
-                      >
-                        New Address
-                      </Button>
-                    </div>
-                  ) : (
+                {
+                  addnewAddressFormVisibility ?
                     <div className="p-3 border border-muted rounded-lg ">
                       <AddNewAddressForm
                         isModal={false}
@@ -767,8 +667,112 @@ console.log(addressData);
                         register={register}
                       />
                     </div>
-                  )
-                ) : null}
+
+                    : (
+                      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 my-3">
+                        {addressData.map((addr: any) => (
+                          <div className="border-muted border shadow-sm rounded-lg px-4 py-3 space-y-4 h-full flex flex-col justify-between ">
+                            <div className="space-y-2">
+                              <Typography
+                                size={"sm"}
+                                bold={"bold"}
+                                variant={"lifeText"}
+                              >
+                                {addr.type}
+                              </Typography>
+                              <div className="w-full bg-[#dee2e6] mx-auto h-[1px]"></div>
+                              <div>
+                                <Typography
+                                  size={"xs"}
+                                  bold={"semibold"}
+                                  className="mb-2"
+                                >
+                                  {addr.name}
+                                </Typography>
+                                <Typography size={"xs"}>
+                                  {addr.google_address}
+                                </Typography>
+                              </div>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <Button
+                                variant={"white"}
+                                size={"sm"}
+                                className={typographyVariants({
+                                  variant: "primary",
+                                  size: "sm",
+                                })}
+                                iconRight={
+                                  <Icon
+                                    type="editIcon"
+                                    sizes={"xs"}
+                                    className="ml-1"
+                                  />
+                                }
+                                onClick={() => {
+                                  setValue("name", addr.name);
+                                  setValue("phone", addr.phone);
+                                  setValue("type", addr.type);
+                                  setValue("state", addr.state);
+                                  setValue("city", addr.city);
+                                  setValue("street_address", addr.street_address);
+                                  setValue("flat_number", addr.flat_number);
+                                  setValue("building", addr.building);
+                                  setValue("country", addr.country);
+                                  setValue(
+                                    "additional_info",
+                                    addr.additional_info
+                                  );
+                                  setaddnewAddressFormVisibility(true);
+                                }}
+                              >
+                                Edit
+                              </Button>
+
+                              <Button
+                                variant={"white"}
+                                size={"xs"}
+                                className={typographyVariants({
+                                  variant: "danger",
+                                  size: "sm",
+                                })}
+                                onClick={() => deleteAddress({
+                                  address_id: addr.id,
+                                },
+                                  session?.token.token
+                                )}
+                                iconRight={
+                                  <Icon
+                                    type="crossIcon"
+                                    sizes={"sm"}
+                                    className="ml-1"
+                                  />
+                                }
+                              >
+                                Delete
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                        <Button
+                          onClick={() => setaddnewAddressFormVisibility(true)}
+                          variant={"outline"}
+                          className="w-full h-[147px]"
+                          iconLeft={
+                            <Icon
+                              type="editIcon"
+                              sizes={"sm"}
+                              className="mr-2 "
+                            />
+                          }
+                        >
+                          New Address
+                        </Button>
+
+                      </div>
+                    )
+                }
+
               </div>
             </TransitionComp>
           ) : null}

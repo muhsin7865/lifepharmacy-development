@@ -1,11 +1,16 @@
-export default async function deleteAddress(payLoadData: any) {
+export default async function deleteAddress(payLoadData: any, sessionToken: any) {
   var raw = JSON.stringify(payLoadData);
+  console.log({ sessionToken, payLoadData });
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${sessionToken}`);
   const res = await fetch(
-    "https://prodapp.lifepharmacy.com/api/user/delete-address",
+    "https://devapp.lifepharmacy.com/api/user/delete-address",
     {
-      headers: {
-        Authorization: `Bearer 409119874|8AlmWjKAF78I3enUz0cyOvK8gUt4cxVLqbcoGZeQ`,
-      },
+      method: "POST",
+      headers:
+        myHeaders,
+
       body: raw,
     }
   );
