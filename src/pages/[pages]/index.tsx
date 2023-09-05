@@ -17,8 +17,8 @@ export const getStaticPaths = async (context: any) => {
 
   const slugs = data_res.data.content
     .flatMap((section: any) =>
-      section.type != "product_grid" &&
-        section.type != "gap" &&
+      section.section_type != "product_grid" &&
+        section.section_type != "gap" &&
         (section.settings.hide_in_desktop_web === false ||
           section.settings.hide_in_desktop_web === null ||
           section.settings.hide_in_mobile_web === false ||
@@ -36,6 +36,7 @@ export const getStaticPaths = async (context: any) => {
       pages: slug,
     },
   }));
+console.log(paths);
 
   return {
     fallback: "blocking",
