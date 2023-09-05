@@ -132,7 +132,7 @@ const DynamicSliderGrid: FC<props> = ({ data, isDesktop, isMobile }) => {
               ((isDesktop && sec_data.desktop.image_url) ||
                 (isMobile && sec_data.mobile.image_url)) && (
                 <SwiperSlide>
-                  <ImgPage
+                  <ImgPage 
                     sectionData={sec_data}
                     isDesktop={isDesktop}
                     isMobile={isMobile}

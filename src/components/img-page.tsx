@@ -40,6 +40,13 @@ const ImgPage: FC<pageProps> = ({
   m_height,
   d_width,
 }) => {
+  const imageUrl = () => {
+    if (isDesktop && sectionData.desktop.image_url) {
+      return sectionData.desktop.image_url;
+    }
+
+    return sectionData.mobile.image_url;
+  };
   return (
     <div className="banner-overlay">
       <Link
@@ -50,11 +57,8 @@ const ImgPage: FC<pageProps> = ({
         )}
       >
         <Image
-          src={
-            isDesktop && sectionData.desktop.image_url
-              ? sectionData.desktop.image_url
-              : sectionData.mobile.image_url
-          }
+          quality={70}
+          src={imageUrl()}
           className={`mx-auto ${isDesktop ? "max-w-full" : "w-full"}`}
           height={
             isDesktop

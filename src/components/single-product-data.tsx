@@ -57,16 +57,6 @@ export const SingleProductData = ({
               ) : (
                 <Skeleton className="h-[200px] w-full" />
               )}
-              {/* {loadingState ? (
-                <div className="bg-white/50 absolute inset-0 flex justify-center items-center">
-                  <Icon
-                    type="refreshIcon"
-                    className="animate-spin text-slate-500"
-                    sizes={"lg"}
-                  />
-                </div>
-              ) : null} */}
-
               <ProductOfferBadge offersData={pro_data.offers} />
             </Link>
             <ProductBestSellerBadge proLabelData={pro_data.label} />

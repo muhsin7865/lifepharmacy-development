@@ -235,14 +235,14 @@ const AuthModal = () => {
   return (
     <>
       <ModalContainer
-        size={"lg"}
+        size={"default"}
         showModal={isSheetOpen}
         setCloseModal={
           isFixedModal && pathname === "/checkout" ? () => {} : setSheetOpen
         }
       >
         <div className=" flex justify-between items-center pb-1 font-semibold ">
-          <Typography size={"xxl"} bold={"bold"}>
+          <Typography size={"xl"} bold={"bold"}>
             Login or Sign up
           </Typography>
 
@@ -258,30 +258,34 @@ const AuthModal = () => {
           </Button>
         </div>
         {LoginSignUpPageVisibility ? (
-          <form className="sm:space-y-2 space-y-0 pb-2" action="#">
-            <div className="mt-3 flex-1">
+          <form className="space-y-3 " action="#">
+            <div className="mt-3 flex-1 ">
               <Tabs defaultValue="phone" className="border-none">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="phone" className="z-20">
-                    <Typography bold={"semibold"}>Using Phone</Typography>
+                    <Typography bold={"semibold"} size={"sm"}>
+                      Using Phone
+                    </Typography>
                   </TabsTrigger>
                   <TabsTrigger value="email">
-                    <Typography bold={"semibold"}>Using Email</Typography>
+                    <Typography bold={"semibold"} size={"sm"}>
+                      Using Email
+                    </Typography>
                   </TabsTrigger>
                 </TabsList>
 
                 <TabsContent key="phoneinput" value="phone">
-                  <div>
+                  <div className="space-y-2">
                     <Typography
                       bold={"semibold"}
-                      size={"lg"}
+                      size={"sm"}
                       requiredField={true}
                     >
                       Enter Your Mobile Number
                     </Typography>
 
                     <Input
-                      sizes={"sm"}
+                      sizes={"xs"}
                       buttonLeft={
                         <Button
                           onClick={(e) => {
@@ -299,14 +303,10 @@ const AuthModal = () => {
                                 src={`https://hatscripts.github.io/circle-flags/flags/${selectedCountryData.alpha2Code.toLowerCase()}.svg`}
                                 width="50"
                                 height="50"
-                                className={`sm:w-8 sm:h-8 h-7 w-7  `}
+                                className={`sm:w-6 sm:h-6 h-6 w-6  `}
                                 alt={selectedCountryData.name}
                               />
-                              <Typography
-                                className="px-2"
-                                bold={"bold"}
-                                size={"lg"}
-                              >
+                              <Typography className="px-2" bold={"bold"}>
                                 {" "}
                                 +{selectedCountryData.callingCodes}
                               </Typography>
@@ -321,7 +321,7 @@ const AuthModal = () => {
                       className={cn(
                         typographyVariants({
                           bold: "bold",
-                          size: "lg",
+                          size: "default",
                         })
                       )}
                       onChange={(e) =>
@@ -360,20 +360,20 @@ const AuthModal = () => {
                   </div>
                 </TabsContent>
                 <TabsContent key="emailInput" value="email">
-                  <div>
+                  <div className="space-y-2">
                     <Typography
                       bold={"semibold"}
-                      size={"lg"}
+                      size={"sm"}
                       requiredField={true}
                     >
                       Enter Your Email Address
                     </Typography>
 
                     <Input
-                      sizes={"sm"}
+                      sizes={"xs"}
                       className={typographyVariants({
                         bold: "bold",
-                        size: "lg",
+                        size: "default",
                       })}
                       iconRight={
                         credentialValidState.email.state === "loading" ? (
@@ -416,11 +416,11 @@ const AuthModal = () => {
               </Tabs>
             </div>
             <div className="space-y-2">
-              <Typography size={"sm"}>
+              <Typography size={"xs"}>
                 By continuing, I agree to the{" "}
                 <Button
                   variant="primaryLink"
-                  size="sm"
+                  size="xs"
                   onClick={(e) => {
                     e.preventDefault();
                     setTermsModal(true);
@@ -435,7 +435,7 @@ const AuthModal = () => {
                     setPrivacyPolicyModalState(true);
                   }}
                   variant="primaryLink"
-                  size="sm"
+                  size="xs"
                 >
                   Privacy Policy
                 </Button>{" "}
@@ -473,14 +473,14 @@ const AuthModal = () => {
           </form>
         ) : null}
         {otpPageVisibility ? (
-          <div className="py-2 space-y-1" id="otpPage">
-            <Typography bold={"semibold"} variant={"primary"} size={"xl"}>
+          <div className=" space-y-1" id="otpPage">
+            <Typography bold={"semibold"} variant={"primary"} size={"lg"}>
               OTP Code
             </Typography>
-            <Typography type="p" requiredField={true}>
+            <Typography type="p" size={"sm"} requiredField={true}>
               Please check your {signInUsing.type} and enter the OTP code{" "}
             </Typography>
-            <form className="space-y-6" action="#">
+            <form className="space-y-4" action="#">
               <OtpInput
                 value={state}
                 onChange={handleChange}
@@ -502,15 +502,18 @@ const AuthModal = () => {
                 renderInput={(props: any) => (
                   <input
                     {...props}
-                    className={cn("h-14", inputVariants({ sizes: "lg" }))}
+                    className={cn(
+                      "h-14 !rounded-none",
+                      inputVariants({ sizes: "lg" })
+                    )}
                   />
                 )}
               />
               <div>
                 {countDownVisible ? (
                   <div className="flex justify-between" id="seconds-count">
-                    <Typography size={"sm"}>Didn't Receive Code?</Typography>{" "}
-                    <Typography size={"sm"}>
+                    <Typography size={"xs"}>Didn't Receive Code?</Typography>{" "}
+                    <Typography size={"xs"}>
                       Request again in {time >= 0 ? time : stopTimer()} seconds
                     </Typography>{" "}
                   </div>
@@ -522,8 +525,10 @@ const AuthModal = () => {
                     }}
                     type="button"
                     size={"sm"}
+                    className="!text-xs"
+                    rounded={"md"}
                   >
-                    RESEND OTP
+                    Resend OTP
                   </Button>
                 )}
               </div>

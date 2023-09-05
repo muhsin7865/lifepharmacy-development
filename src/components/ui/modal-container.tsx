@@ -12,7 +12,7 @@ const modalVariants = cva(
   {
     variants: {
       size: {
-        default: "sm:max-w-md w-full p-4",
+        default: "sm:max-w-lg w-full p-4",
         sm: "sm:max-w-sm w-full p-3",
         lg: "sm:max-w-xl w-full sm:p-5 p-4",
         full: "w-full",
@@ -47,7 +47,7 @@ const ModalContainer = React.forwardRef<HTMLDivElement, ModalProps>(
   }) => {
     const { width } = useWindowDimensions();
 
-    return (width > 575 || fullModal && showModal ) && !sheetOnly ? (
+    return (width > 575 || (fullModal && showModal)) && !sheetOnly ? (
       <Transition appear show={showModal} as={Fragment}>
         <Dialog
           as="div"
